@@ -304,6 +304,11 @@ return [
             'route' => 'products.index',
             'icon' => 'fas fa-fw fa-box',
         ],
+        [
+            'text' => 'Clientes',
+            'route' => 'clients.index',
+            'icon' => 'fas fa-fw fa-users',
+        ],
     ],
 
     /*

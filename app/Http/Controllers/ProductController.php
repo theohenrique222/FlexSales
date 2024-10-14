@@ -58,24 +58,20 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product, $id)
+    public function update(Request $request, Product $product)
     {
         $request->validate([
             'name' => 'required|max:255',
-            'price' => 'required'
+            'price' => 'required',
         ]);
-        $post = Product::find($id);
-        $post->update($request->all());
-        return redirect()->route('admin.products.index');
+        
+        $product->update($request->all());
+        return redirect()->route('products.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product, $id)
+    public function destroy(Product $product)
     {
-        $post = Product::find($id);
-        $post->delete();
-        return redirect()->route('admin.products.index');
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
