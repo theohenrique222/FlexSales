@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+
     <form action="{{ route('products.update', $product->id) }}" method="post">
         @csrf
         @method('put')

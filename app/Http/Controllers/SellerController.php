@@ -14,7 +14,6 @@ class SellerController extends Controller
         $sellers = Seller::all();
 
         return view('admin.sellers.index', ['sellers' => $sellers]);
-        
     }
 
     /**
@@ -37,13 +36,13 @@ class SellerController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => $request->password,
         ]);
 
         Seller::create([
-            'user_id' => $user->id,
+            'user_id'   => $user->id,
         ]);
 
         return redirect()->route('sellers.index');
@@ -62,22 +61,32 @@ class SellerController extends Controller
      */
     public function edit(Seller $seller)
     {
-        //
+        return view('admin.sellers.edit', ['seller' => $seller]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Seller $seller)
     {
-        //
+        $request->validate([
+            'name'      => 'required|max:255',
+            'email'     => 'required',
+            'password'  => 'required'
+        ]);
+
+        $user = $seller->user;
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password  = $request->password;
+
+
+        $user->save();
+        return redirect()->route('sellers.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Seller $seller)
     {
-        //
+        $user = $seller->user;
+        $user->delete();
+        return redirect()->route('sellers.index');
     }
 }
