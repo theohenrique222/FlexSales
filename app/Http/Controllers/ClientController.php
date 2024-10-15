@@ -11,7 +11,7 @@ class ClientController extends Controller
     {
         $clients = Client::all();
 
-        return view('admin.clients.index', ['clients' => $clients]);
+        return view('admin.clients.index', ['users' => $clients]);
     }
 
     /**
@@ -47,24 +47,31 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $client)
     {
-        //
+        return view('admin.clients.edit', ['client' => $client]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Client $client)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'cpf' => 'required',
+        ]);
+
+        $client->update($request->all());
+        return redirect()->route('clients.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('clients.index');
     }
 }

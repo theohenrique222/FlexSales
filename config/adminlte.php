@@ -309,6 +309,11 @@ return [
             'route' => 'clients.index',
             'icon' => 'fas fa-fw fa-users',
         ],
+        [
+            'text' => 'Vendedor',
+            'route' => 'sellers.index',
+            'icon' => 'fas fa-fw fa-user',
+        ],
     ],
 
     /*
