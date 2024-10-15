@@ -314,6 +314,11 @@ return [
             'route' => 'sellers.index',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Vendas',
+            'route' => 'sales.index',
+            'icon' => 'fas fa-fw fa-dumpster-fire',
+        ],
     ],
 
     /*

@@ -4,17 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Client extends Model
+class Sale extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'cpf',
-    ];
     
-    public function sales()
+    public function seller(): BelongsTo
     {
-        return $this->hasMany(Sale::class);
+        return $this->belongsTo(Seller::class);
     }
 }

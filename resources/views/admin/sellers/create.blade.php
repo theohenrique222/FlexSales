@@ -23,7 +23,8 @@
         </div>
 
         <div class="row">
-            <x-adminlte-input name="password" label="Senha" placeholder="Digite a senha" type="password" fgroup-class="col-md-6">
+            <x-adminlte-input name="password" label="Senha" placeholder="Digite a senha" type="password"
+                fgroup-class="col-md-6">
             </x-adminlte-input>
         </div>
 
