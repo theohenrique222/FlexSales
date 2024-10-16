@@ -19,4 +19,3 @@ Route::middleware('auth')->group(function () {
     Route::resource('sellers', SellerController::class);
     Route::resource('sales', SaleController::class);
 });
-

@@ -23,6 +23,8 @@ class UserSeeder extends Seeder
             'password' => '123456789',
         ]);
 
-       
+       $seller = Seller::create([
+            'user_id' => $user->id,
+       ]);
     }
 }

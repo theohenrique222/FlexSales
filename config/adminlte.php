@@ -110,7 +110,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
@@ -316,7 +316,7 @@ return [
         ],
         [
             'text' => 'Vendas',
-            'route' => 'sales.index',
+            'route' => 'sales.create',
             'icon' => 'fas fa-fw fa-dumpster-fire',
         ],
     ],
