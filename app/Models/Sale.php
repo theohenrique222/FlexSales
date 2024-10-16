@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Sale extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'client_id',
         'seller_id',

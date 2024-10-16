@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -13,10 +14,14 @@ class Product extends Model
         'price',
     ];
 
-    public function sales()
+    // public function sales()
+    // {
+    //     return $this->hasMany(Sale::class);
+    // }
+
+    public function sales(): BelongsToMany
     {
-        return $this->hasMany(Sale::class);
+        return $this->belongsToMany(Sale::class, 'sale_product')
+            ->withPivot('quantity');
     }
-    
-    
 }

@@ -22,13 +22,14 @@
                             <i class="fas fa-user"></i>
                         </div>
                     </x-slot>
-                    <x-adminlte-options :options="$clients->pluck('name', 'id')->toArray()"/>
+                    <x-adminlte-options :options="$clients->pluck('name', 'id')->toArray()" />
                 </x-adminlte-select2>
             </div>
-            <x-adminlte-button class="btn-flat" type="submit" label="Iniciar Venda" theme="success" icon="fas fa-lg fa-save" />
+            <x-adminlte-button class="btn-flat" type="submit" label="Iniciar Venda" theme="success"
+                icon="fas fa-lg fa-arrow-right" />
         </form>
 
-        
+
 
 
     </div>

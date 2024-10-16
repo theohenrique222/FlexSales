@@ -8,7 +8,7 @@
 
 @section('content')
     <div>
-        <form action="{{ route('sales.update', $sale->id) }}" method="post">
+        <form action="" method="post">
             @csrf
             @method('put')
 
@@ -21,7 +21,7 @@
                         </div>
                     </x-slot>
 
-                    <x-adminlte-options :selected="$sale->client_id" :options="$clients->pluck('name', 'id')->toArray()" />
+                    
 
                 </x-adminlte-select>
             </div>
@@ -39,7 +39,7 @@
                 </x-adminlte-select>
 
                 <div class="col-md-2">
-                    <form action="{{ route('sales.create', $sale->id) }}" method="post">
+                    <form action="" method="post">
                         @csrf
                         <x-adminlte-input type="number" class="mr-2" name="quantity" label="Quantidade"
                             placeholder="Quantitade" label-class="text-lightblue">
@@ -59,9 +59,5 @@
             <x-adminlte-button class="btn-flat" type="submit" label="Gerar PDF" theme="success"
                 icon="fas fa-lg fa-file-pdf" />
         </form>
-
     </div>
-
-
-
 @stop

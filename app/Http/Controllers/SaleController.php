@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\SaleProduct;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -12,9 +13,17 @@ class SaleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $sales = Sale::all();
+        $clients = Client::all();
+        $products = Product::all();
+
+        return view('admin.sales.index', [
+            'sales' => $sales,
+            'clients' => $clients,
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -32,7 +41,6 @@ class SaleController extends Controller
             'products' => $products,
         ]);
     }
-    public function getClient($idClient) {}
 
     /**
      * Store a newly created resource in storage.
@@ -86,14 +94,18 @@ class SaleController extends Controller
             'client_id' => 'required|exists:clients,id',
             'product_id' => 'required|exists:products,id',
         ]);
-        
+
         $sale->update([
             'client_id' => $request->client_id,
             'product_id' => $request->product_id,
         ]);
-        $sale->sale_products([
-            $request->product_id => ['quantity' => $request->quantity]
+
+        SaleProduct::create([
+            'product_id' => $request->product_id,
+            'sale_id' => $sale->id,
+            'quantity' => $request->quantity,
         ]);
+        return redirect()->route('sales.index', $sale->id);
     }
 
     /**
