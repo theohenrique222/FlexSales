@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Sale extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'client_id',
         'seller_id',
@@ -21,7 +20,12 @@ class Sale extends Model
         return $this->belongsTo(Seller::class);
     }
 
-    public function products(): BelongsToMany
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function products()
     {
         return $this->belongsToMany(Product::class, 'sale_product')
             ->withPivot('quantity');

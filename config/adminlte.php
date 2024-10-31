@@ -68,7 +68,7 @@ return [
     'logo_img_class' => 'd-none',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'd-none',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => null,
 
     /*
     |--------------------------------------------------------------------------

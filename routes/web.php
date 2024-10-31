@@ -7,10 +7,6 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class);
     
