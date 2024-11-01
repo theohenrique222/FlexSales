@@ -66,7 +66,7 @@
             </div>
 
             <div class="col-md-12">
-                <div class="container">
+                {{-- <div class="container">
                     <x-adminlte-select name="optionsTest1" label="Forma de pagamento" igroup-size="sm">
                         <x-adminlte-options :options="['A Vísta', 'Parcelado', 'Parcelamento Personalizado']" empty-option="Selecione a forma de pagamento" />
                     </x-adminlte-select>
@@ -75,7 +75,14 @@
                         <x-adminlte-options :options="['1x'], ['2x']" empty-option="Quantidade de parcelas" />
                     </x-adminlte-select>
                     
-                </div>
+                </div> --}}
+                <form action="{{ route('payments.index', $sale->id) }}" method="post">
+                    @csrf
+                    @method('post')
+                    <x-adminlte-button class="btn-flat" type="submit" label="Pagar" theme="success" icon="fas fa-lg fa-save"/>
+
+                </form>
+
             </div>
 
             <div class="col-md-12">

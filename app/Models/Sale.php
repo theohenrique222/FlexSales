@@ -34,4 +34,8 @@ class Sale extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
