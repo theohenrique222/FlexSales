@@ -10,19 +10,15 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $sales = Sale::with(['products' => function ($query) {
-            $query->withPivot('quantity');
-        }])->get();
-
-        $clients   = Client::all();
-        $products  = Product::all();
+        // $sales = Sale::with(['products', 'client', 'seller'])->get();
+        $sales = Sale::all();
+        $product = Product::all();
 
         return view('admin.sales.index', [
-            'sales'     => $sales,
-            'clients'   => $clients,
-            'products'  => $products,
+            'sales' => $sales,
+            'product' => $product,
         ]);
     }
 

@@ -316,6 +316,11 @@ return [
         ],
         [
             'text' => 'Vendas',
+            'route' => 'sales.index',
+            'icon' => 'fas fa-fw fa-dumpster',
+        ],
+        [
+            'text' => 'Vender',
             'route' => 'sales.create',
             'icon' => 'fas fa-fw fa-dumpster-fire',
         ],
