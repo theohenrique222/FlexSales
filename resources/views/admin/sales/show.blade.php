@@ -20,24 +20,18 @@
                                 <tr>
                                     <th>Produto</th>
                                     <th>Quantidade</th>
-                                    <th>Valor</th>
+                                    <th>Valor Unitário</th>
                                     <th>Subtotal</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $total = 0;
-                                @endphp
                                 @foreach ($sale->products as $product)
-                                    @php
-                                        $subtotal = $product->price * $product->pivot->quantity;
-                                        $total += $subtotal;
-                                    @endphp
                                     <tr>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->pivot->quantity }}</td>
                                         <td>{{ number_format($product->price, 2, ',', '.') . ' R$' }}</td>
-                                        <td>{{ number_format($subtotal, 2, ',', '.') . ' R$' }}</td>
+                                        <td>{{ number_format($product->price * $product->pivot->quantity, 2, ',', '.') . ' R$' }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -79,7 +73,8 @@
                 <form action="{{ route('payments.index', $sale->id) }}" method="post">
                     @csrf
                     @method('post')
-                    <x-adminlte-button class="btn-flat" type="submit" label="Pagar" theme="success" icon="fas fa-lg fa-save"/>
+                    <x-adminlte-button class="btn-flat" type="submit" label="Pagar" theme="success"
+                        icon="fas fa-lg fa-save" />
 
                 </form>
 
