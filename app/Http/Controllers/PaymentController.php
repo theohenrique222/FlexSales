@@ -30,16 +30,20 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'sale_id'           => 'required',
-            'payment_method'    => 'required',
-            'amount'            => 'required',
-            'installments'      => 'nullable|integer'
+        $sale = Sale::all();
+
+        Payment::create([
+            'sale_id'           => $request->sale_id,
+            'payment_method'    => $request->payment_method,
+            'amount'            => $request->amount,
+            'installments'      => $request->installments,
         ]);
 
-        Payment::create($request->all());
 
-        return redirect()->route('admin.payments.index');
+
+        return to_route('sales.index', [
+            'sale'      => $sale,
+        ]);
     }
 
     /**
