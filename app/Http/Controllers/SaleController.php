@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Seller;
@@ -14,19 +15,17 @@ class SaleController extends Controller
     {
         $sales = Sale::with('products')->get();
         $products = Product::all();
-        $total = 0;
+        $payment = Payment::all();
 
-        foreach ($sales as $sale) {
-            foreach ($sale->products as $product) {
-                $subtotal = $product->price * $product->pivot->quantity;
-                $total += $subtotal;
-            }
+        foreach ($payment as $payments) {
+            $total = $payments->amount;
         }
 
         return view('admin.sales.index', [
             'sales'    => $sales,
             'products' => $products,
             'total'    => $total,
+            'payment' => $payment,
         ]);
     }
 
