@@ -12,15 +12,24 @@ class SaleController extends Controller
 {
     public function index()
     {
-        // $sales = Sale::with(['products', 'client', 'seller'])->get();
-        $sales = Sale::all();
-        $product = Product::all();
+        $sales = Sale::with('products')->get();
+        $products = Product::all();
+        $total = 0;
+
+        foreach ($sales as $sale) {
+            foreach ($sale->products as $product) {
+                $subtotal = $product->price * $product->pivot->quantity;
+                $total += $subtotal;
+            }
+        }
 
         return view('admin.sales.index', [
-            'sales' => $sales,
-            'product' => $product,
+            'sales'    => $sales,
+            'products' => $products,
+            'total'    => $total,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -64,7 +73,7 @@ class SaleController extends Controller
     {
         $sale = Sale::with([
             'products'  => function ($query) {
-                $query  -> withPivot('quantity');
+                $query->withPivot('quantity');
             }
         ])->findOrFail($saleId);
 

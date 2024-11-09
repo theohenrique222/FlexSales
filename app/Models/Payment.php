@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+
+    protected $filable = [
+        'sale_id',
+        'payment_method',
+        'amount',
+        'installments',
+    ];
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class);
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Product;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -29,10 +31,10 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'sale_id' => 'required',
-            'payment_method' => 'required',
-            'amount' => 'required',
-            'installments' => 'nullable|integer'
+            'sale_id'           => 'required',
+            'payment_method'    => 'required',
+            'amount'            => 'required',
+            'installments'      => 'nullable|integer'
         ]);
 
         Payment::create($request->all());
@@ -51,9 +53,25 @@ class PaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($saleId)
     {
-        //
+        $sale = Sale::findOrFail($saleId);
+        $products               = Product::all();
+        $total                  = 0;
+
+        foreach ($sale->products as $product) {
+            $subtotal           = $product->price * $product->pivot->quantity;
+            $total             += $subtotal;
+        }
+
+        return view(
+            'admin.payments.edit',
+            [
+                'sale'           => $sale,
+                'products'       => $products,
+                'total'          => $total,
+            ]
+        );
     }
 
     /**
