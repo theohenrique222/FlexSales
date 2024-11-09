@@ -32,12 +32,9 @@
                             {{ $sale->created_at->format('d/m/Y') }}
                         </td>
                         <td>
-                            {{-- {{ $payment->pluck('id', 'amount') }} --}}
                             @foreach ($payment as $payments)
-                                {{ $payments->amount }}
+                                {{ number_format($payments->amount, 2, ',', '.') . ' R$' }}
                             @endforeach
-                            
-                            
                         </td>
                         <td>
                             <form action="{{ route('sales.update', $sale->id) }}" method="post">

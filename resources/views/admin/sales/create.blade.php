@@ -8,7 +8,6 @@
 
 @section('content')
 
-
     <div>
         <form action="{{ route('sales.store') }}" method="post">
             @csrf
@@ -28,10 +27,6 @@
             <x-adminlte-button class="btn-flat" type="submit" label="Iniciar Venda" theme="success"
                 icon="fas fa-lg fa-arrow-right" />
         </form>
-
-
-
-
     </div>
 
 
