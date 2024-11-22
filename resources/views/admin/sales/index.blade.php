@@ -29,12 +29,10 @@
                             {{ $sale->seller->user->name }}
                         </td>
                         <td>
-                            {{ $sale->created_at->format('d/m/Y') }}
+                            {{ $sale->created_at->format('d/m/Y ' . ' | ' . ' H:m:s') }}
                         </td>
                         <td>
-                            @foreach ($payment as $payments)
-                                {{ number_format($payments->amount, 2, ',', '.') . ' R$' }}
-                            @endforeach
+                            {{ number_format($sale->payments->amount, 2, ',', '.') . ' R$' }}
                         </td>
                         <td>
                             <form action="{{ route('sales.update', $sale->id) }}" method="post">
@@ -52,6 +50,5 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
 @stop
