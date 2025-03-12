@@ -32,7 +32,7 @@
                             {{ $sale->created_at->format('d/m/Y ' . ' | ' . ' H:m:s') }}
                         </td>
                         <td>
-                            {{ number_format($sale->payments->amount, 2, ',', '.') . ' R$' }}
+                            {{ $sale->payments ? 'R$ ' . number_format($sale->payments->amount, 2, ',', '.') : 'ERRO' }}
                         </td>
                         <td>
                             <form action="{{ route('sales.update', $sale->id) }}" method="post">

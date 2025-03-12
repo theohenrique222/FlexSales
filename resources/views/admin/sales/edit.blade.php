@@ -3,10 +3,13 @@
 @section('title', 'Venda')
 
 @section('content_header')
+
     <h1>Vendas</h1>
+
 @stop
 
 @section('content')
+
     <div>
         <form action="{{ route('sales.update', $sale->id) }}" method="post">
             @csrf
@@ -24,64 +27,31 @@
                 </x-adminlte-select>
             </div>
 
+            <!-- Container para os produtos -->
             <div id="products-container">
-                <label for="">Produtos</label>
-                @foreach ($sale->products as $index => $product)
-                    <div class="row product-row">
-                        <x-adminlte-select name="product_id[]" fgroup-class="col-md-6"
-                            data-placeholder="Selecione o Produto">
-                            <x-slot name="prependSlot">
-                                <div class="input-group-text bg-gradient-info">
-                                    <i class="fas fa-box"></i>
-                                </div>
-                            </x-slot>
-                            <x-adminlte-options :selected="$product->id" :options="$products->pluck('name', 'id')->toArray()" />
-                        </x-adminlte-select>
+                <div class="row product-row">
+                    <x-adminlte-select name="product_id[]" label="Produtos" fgroup-class="col-md-6">
+                        <x-slot name="prependSlot">
+                            <div class="input-group-text bg-gradient-info">
+                                <i class="fas fa-box"></i>
+                            </div>
+                        </x-slot>
+                        <x-adminlte-options selected="Selecione o produto" :options="$products->pluck('name', 'id')->toArray()" />
+                    </x-adminlte-select>
 
-                        <div class="col-md-2">
+                    <x-adminlte-input label="Quantidade" type="number" name="quantity[]" value="1"
+                        placeholder="Quantidade">
+                        <x-slot name="appendSlot">
+                            <x-adminlte-button type="button" class="btn-flat btn-danger remove-item-btn mx-2"
+                                theme="danger" label="Remover" icon="fas fa-trash" />
+                        </x-slot>
+                    </x-adminlte-input>
+                </div>
+            </div>
 
-                            <x-adminlte-input type="number" name="quantity[]" value="{{ $product->pivot->quantity ?? 1 }}"
-                                placeholder="Quantidade">
-                            </x-adminlte-input>
-                        </div>
-
-                        <div class="col-md-2">
-
-                            @if ($index == count($sale->products) - 1)
-                                <x-adminlte-button id="iconAdd" class="btn-flat add-remove-btn" type="button" label="Adicionar"
-                                    theme="warning" icon="fas fa-plus" />
-                            @else
-                                <x-adminlte-button class="btn-flat add-remove-btn" type="button" label="Remover"
-                                    theme="danger" icon="fas fa-trash" />
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
-
-                @if ($sale->products->isEmpty())
-                    <div class="row product-row">
-                        <x-adminlte-select name="product_id[]" fgroup-class="col-md-6"
-                            data-placeholder="Selecione o Produto">
-                            <x-slot name="prependSlot">
-                                <div class="input-group-text bg-gradient-info">
-                                    <i class="fas fa-box"></i>
-                                </div>
-                            </x-slot>
-                            <x-adminlte-options :options="$products->pluck('name', 'id')->toArray()" />
-                        </x-adminlte-select>
-
-                        <div class="col-md-2">
-
-                            <x-adminlte-input type="number" name="quantity[]" value="1" placeholder="Quantidade">
-                            </x-adminlte-input>
-                        </div>
-
-                        <div class="col-md-2">
-                            <x-adminlte-button class="btn-flat add-remove-btn" type="button" label="Adicionar"
-                                theme="warning" icon="fas fa-plus" />
-                        </div>
-                    </div>
-                @endif
+            <div class="py-2">
+                <x-adminlte-button type="button" class="btn-flat add-item-btn" label="Adicionar produto" theme="primary"
+                    icon="fas fa-plus" />
             </div>
 
             <x-adminlte-button class="btn-flat" type="submit" label="Comprar" theme="success"
@@ -92,44 +62,43 @@
 
 @section('js')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function addProductRow() {
-                let productRow = document.querySelector('.product-row').cloneNode(true);
-                let select = productRow.querySelector('select');
+        document.addEventListener('DOMContentLoaded', () => {
+            const container  = document.getElementById('products-container');
+            const addItemBtn = document.querySelector('.add-item-btn');
 
-                if (select) {
-                    select.selectedIndex = 0;
-                }
+            addItemBtn.addEventListener('click', () => {
+                const newRow = document.createElement('div');
+                newRow.classList.add('row', 'product-row', 'mt-2');
 
-                let input = productRow.querySelector('input[type="number"]');
+                newRow.innerHTML = `
+                    <x-adminlte-select name="product_id[]" label="Produtos" fgroup-class="col-md-6">
+                        <x-slot name="prependSlot">
+                            <div class="input-group-text bg-gradient-info">
+                                <i class="fas fa-box"></i>
+                            </div>
+                        </x-slot>
+                        <x-adminlte-options selected="Selecione o produto" :options="$products->pluck('name', 'id')->toArray()" />
+                    </x-adminlte-select>
 
-                if (input) {
-                    input.value = '1';
-                }
+                    <x-adminlte-input label="Quantidade" type="number" name="quantity[]" value="1" placeholder="Quantidade" >
+                            <x-slot name="appendSlot">
+                                <x-adminlte-button type="button" class="btn-flat btn-danger remove-item-btn mx-2" theme="danger" label="Remover" icon="fas fa-trash"/>
+                            </x-slot>
+                        </x-adminlte-input>`;
 
-                let iconAdd = document.querySelector('#iconAdd');
+                container.appendChild(newRow);
 
-                document.querySelectorAll('.product-row .add-remove-btn').forEach(function(btn) {
-                    btn.textContent = 'Remover';
-                    btn.classList.replace('btn-warning', 'btn-danger');
-                    btn.classList.replace('fa-plus', 'fa-trash');
-                    btn.removeEventListener('click', addProductRow);
-                    btn.addEventListener('click', function() {
-                        this.closest('.product-row').remove();
-                    });
+                const removeItemBtn = newRow.querySelector('.remove-item-btn');
+                removeItemBtn.addEventListener('click', () => {
+                      newRow.remove();
                 });
+            });
 
-                document.getElementById('products-container').appendChild(productRow);
-
-                var lastRowButton = productRow.querySelector('.add-remove-btn');
-                lastRowButton.textContent = 'Adicionar';
-                lastRowButton.classList.replace('btn-danger', 'btn-warning');
-                lastRowButton.classList.replace('fa-trash', 'fa-plus');
-                lastRowButton.addEventListener('click', addProductRow);
-            }
-
-            document.querySelector('.product-row:last-child .add-remove-btn').addEventListener('click',
-                addProductRow);
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-item-btn')) {
+                    e.target.closest('.product-row').remove();
+                }
+            });
         });
     </script>
 @stop

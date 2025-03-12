@@ -42,7 +42,7 @@ class PaymentController extends Controller
 
 
         return to_route('sales.index', [
-            'sale'      => $sale,
+            'sale'              => $sale,
         ]);
     }
 

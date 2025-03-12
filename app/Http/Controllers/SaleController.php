@@ -13,19 +13,14 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::with('products')->get();
-        $products = Product::all();
-        $payment = Payment::all();
-
-        foreach ($payment as $payments) {
-            $total = $payments->amount;
-        }
+        $sales     = Sale::with('products')->get();
+        $products  = Product::all();
+        $payments   = Payment::all();
 
         return view('admin.sales.index', [
-            'sales'    => $sales,
-            'products' => $products,
-            'total'    => $total,
-            'payment' => $payment,
+            'sales'     => $sales,
+            'products'  => $products,
+            'payments'   => $payments,
         ]);
     }
 
