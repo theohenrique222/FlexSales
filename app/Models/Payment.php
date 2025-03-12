@@ -13,11 +13,16 @@ class Payment extends Model
         'sale_id',
         'payment_method',
         'amount',
-        'installments',
+        'installment',
     ];
 
     public function sale()
     {
         return $this->belongsTo(Sale::class);
+    }
+
+    public function installments()
+    {
+        return $this->hasMany(Installment::class);
     }
 }

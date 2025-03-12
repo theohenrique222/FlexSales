@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
+            $table->decimal('price');
+            $table->foreignId('payments_id');
             $table->timestamps();
         });
     }
