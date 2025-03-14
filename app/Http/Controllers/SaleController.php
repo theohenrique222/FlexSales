@@ -13,14 +13,14 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales     = Sale::with('products')->get();
-        $products  = Product::all();
-        $payments   = Payment::all();
+        $sales          = Sale::with('products')->get();
+        $products       = Product::all();
+        $payments       = Payment::all();
 
         return view('admin.sales.index', [
             'sales'     => $sales,
             'products'  => $products,
-            'payments'   => $payments,
+            'payments'  => $payments,
         ]);
     }
 
@@ -83,11 +83,11 @@ class SaleController extends Controller
         }
 
         return view('admin.sales.show', [
-            'sale'     => $sale,
-            'sellers'  => $sellers,
-            'clients'  => $clients,
-            'products' => $products,
-            'total'    => $total,
+            'sale'      => $sale,
+            'sellers'   => $sellers,
+            'clients'   => $clients,
+            'products'  => $products,
+            'total'     => $total,
         ]);
     }
 
@@ -97,13 +97,13 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
-        $clients       = Client::all();
-        $products      = Product::all();
+        $clients        = Client::all();
+        $products       = Product::all();
 
         return view('admin.sales.edit', [
-            'sale'     => $sale,
-            'clients'  => $clients,
-            'products' => $products,
+            'sale'      => $sale,
+            'clients'   => $clients,
+            'products'  => $products,
         ]);
     }
 
@@ -139,6 +139,8 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        $sale->delete();
+
+        return redirect()->route('sales.index');
     }
 }
