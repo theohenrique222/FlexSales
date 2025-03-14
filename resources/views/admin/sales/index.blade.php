@@ -80,8 +80,8 @@
                                                                 <td>{{ $sale->payments ? 'R$ ' . number_format($sale->payments->amount, 2, ',', '.') : 'ERRO' }}
                                                                 </td>
                                                                 <td>{{ $sale->payments->payment_method ?? 'N/A' }}</td>
-                                                                <td>{{ $sale->payments->installments ?? 'N/A' }}</td>
-                                                                <td>{{ $sale->payments->formatted_installment_values ?? 'N/A' }}
+                                                                <td>{{ $sale->payments->installments ?? '0' }}</td>
+                                                                <td>{{ $sale->payments->formatted_installment_values ?? '0' }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

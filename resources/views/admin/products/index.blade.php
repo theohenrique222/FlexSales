@@ -8,14 +8,13 @@
 
 @section('content')
 
-    <x-adminlte-datatable id="table" :heads="['ID', 'Nome', 'Preço', 'Ações']" theme="light" striped hoverable>
+    <x-adminlte-datatable id="table" :heads="['ID', 'Nome', 'Valor', 'Ações']" theme="light" striped hoverable>
         @foreach ($products as $product)
             <tr>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->price }}</td>
+                <td>{{ number_format($product->price, 2, ',', '.') }} R$</td>
                 <td>
-
                     <form action="{{ route('products.destroy', $product->id) }}" method="post">
                         @csrf
                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info btn-sm">Editar</a>

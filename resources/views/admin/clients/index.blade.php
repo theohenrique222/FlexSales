@@ -13,7 +13,9 @@
             <tr>
                 <td>{{ $client->id }}</td>
                 <td>{{ $client->name }}</td>
-                <td>{{ $client->cpf }}</td>
+                <td>{{ substr($client->cpf, 0, 3) . '.' . substr($client->cpf, 3, 3) . '.' . substr($client->cpf, 6, 3) . '-' . substr($client->cpf, 9, 2) }}</td>
+
+                
                 <td>
 
                     <form action="{{ route('clients.destroy', $client->id) }}" method="post">
