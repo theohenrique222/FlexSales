@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->decimal('amount');
             $table->integer('installments')->nullable();
+            $table->json('installment_values')->nullable();
             $table->timestamps();
         });
     }

@@ -42,11 +42,17 @@
                             <thead>
                                 <tr>
                                     <th>Total da Venda</th>
+                                    <th>Forma de pagamento</th>
+                                    <th>Prestações</th>
+                                    <th>Valor da parcela</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ number_format($total, 2, ',', '.') . ' R$' }}</td>
+                                    <td>{{ $sale->payments->payment_method ?? '' }}</td>
+                                    <td>{{ $sale->payments->installments ?? '' }}</td>
+                                    <td>{{ $sale->payments->formatted_installment_values ?? '' }}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -13,7 +13,8 @@ class Payment extends Model
         'sale_id',
         'payment_method',
         'amount',
-        'installment',
+        'installments',
+        'installment_values'
     ];
 
     public function sale()
@@ -21,8 +22,9 @@ class Payment extends Model
         return $this->belongsTo(Sale::class);
     }
 
-    public function installments()
+    public function getFormattedInstallmentValuesAttribute()
     {
-        return $this->hasMany(Installment::class);
+        $values = json_decode($this->installment_values, true) ?? [];
+        return implode(' R$ | ', $values);
     }
 }

@@ -33,10 +33,11 @@ class PaymentController extends Controller
         $sale = Sale::all();
 
         Payment::create([
-            'sale_id'           => $request->sale_id,
-            'payment_method'    => $request->payment_method,
-            'amount'            => $request->amount,
-            'installments'      => $request->installments,
+            'sale_id'            => $request->sale_id,
+            'payment_method'     => $request->payment_method,
+            'amount'             => $request->amount,
+            'installments'       => $request->installments,
+            'installment_values' => json_encode($request->installment_values),
         ]);
 
 
@@ -60,12 +61,12 @@ class PaymentController extends Controller
     public function edit($saleId)
     {
         $sale = Sale::findOrFail($saleId);
-        $products               = Product::all();
-        $total                  = 0;
+        $products                = Product::all();
+        $total                   = 0;
 
         foreach ($sale->products as $product) {
-            $subtotal           = $product->price * $product->pivot->quantity;
-            $total             += $subtotal;
+            $subtotal            = $product->price * $product->pivot->quantity;
+            $total              += $subtotal;
         }
 
         return view(

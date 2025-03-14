@@ -14,7 +14,7 @@ class ClientSeeder extends Seeder
     {
         $clients = Client::create([
             'name' => 'Cliente 1',
-            'cpf' => '000000000',
+            'cpf' => '123456789',
         ]);
     }
 }
