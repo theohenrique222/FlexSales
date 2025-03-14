@@ -2,27 +2,20 @@
 
 @section('content')
 
-    <x-adminlte-profile-widget name="Bem vindo" desc="{{ $user[0]['name'] ?? 'Sem identificação' }}" theme="lightblue"
-        img="https://picsum.photos/id/1/100" layout-type="classic">
+    <x-adminlte-profile-widget name="{{ $user[0]['name'] ?? 'Sem identificação' }}" desc="Gestor de vendas" class="elevation-4 bg-primary"
+        img="https://picsum.photos/id/1/100"  layout-type="classic"
+        header-class="text-right" footer-class="bg-white">
+        <x-adminlte-profile-col-item class="border-right text-dark" icon="fas fa-lg fa-tasks" title="Total de Clientes"
+            text="{{ $allClients }}" size=6 badge="lime" />
 
-        <p>TODOS OS CLIENTES</p>
+        <x-adminlte-profile-col-item class="text-dark" icon="fas fa-lg fa-tasks" title="Total de Vendas" text="{{ $allSales }}"
+            size=6 badge="primary" />
 
-        @foreach ($client as $clients)
-            <x-adminlte-profile-row-item icon="fas fa-fw fa-user-friends" title="{{ $clients['name'] }}"
-                text="{{ $clients['id'] }}" url="#" badge="teal" />
-        @endforeach
-
+        <x-adminlte-profile-row-item title="Redes Sociais" class="text-center text-dark border-bottom" />
+        <x-adminlte-profile-row-item icon="fab fa-fw fa-2x fa-instagram text-dark" title="Instagram" url="#"
+            size=4 />
+        <x-adminlte-profile-row-item icon="fab fa-fw fa-2x fa-facebook text-dark" title="Facebook" url="#" size=4 />
+        <x-adminlte-profile-row-item icon="fab fa-fw fa-2x fa-whatsapp text-dark" title="Whatsapp" url="#" size=4 />
     </x-adminlte-profile-widget>
-
-    <x-adminlte-modal id="modalCustom" title="Account Policy" size="lg" theme="teal" icon="fas fa-bell" v-centered
-        static-backdrop scrollable>
-        <div style="height:800px;">Read the account policies...</div>
-        <x-slot name="footerSlot">
-            <x-adminlte-button class="mr-auto" theme="success" label="Accept" />
-            <x-adminlte-button theme="danger" label="Dismiss" data-dismiss="modal" />
-        </x-slot>
-    </x-adminlte-modal>
-    
-    <x-adminlte-button label="Open Modal" data-toggle="modal" data-target="#modalCustom" class="bg-teal" />
 
 @stop
