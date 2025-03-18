@@ -10,7 +10,7 @@ O destaque do sistema é a funcionalidade de **pagamento personalizado**, permit
 
 ## 🚀 Tecnologias Utilizadas
 
-- Laravel 10+
+- Laravel 11+
 - PHP 8+
 - MySQL
 - AdminLTE
@@ -72,6 +72,12 @@ Credenciais de teste:
 ```makefile
 Email: admin@teste.com
 Senha: password
+```
+
+Inicie o DB Seeder:
+
+```bash
+php artisan db:seed
 ```
 
 ## 🛠️ Melhorias Futuras
