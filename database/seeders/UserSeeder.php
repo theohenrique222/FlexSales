@@ -17,13 +17,13 @@ class UserSeeder extends Seeder
         }
 
         $user = User::create([
-            'name' => 'Theo Henrique', 
-            'email' => 'admin@teste.com', 
-            'password' => '123123123',
+            'name'      => 'Theo Henrique', 
+            'email'     => 'admin@teste.com', 
+            'password'  => 'password',
         ]);
 
        $seller = Seller::create([
-            'user_id' => $user->id,
+            'user_id'   => $user->id,
        ]);
     }
 }

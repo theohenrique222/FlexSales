@@ -2,9 +2,13 @@
 
 @section('title', 'Vendas')
 
+
+@section('content_header')
+    <h1>Todas as Vendas</h1>
+@stop
+
 @section('content')
     <div class="container">
-        <h1>Todas as Vendas</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -33,7 +37,7 @@
                             </button>
 
                             <x-adminlte-modal id="modalSale-{{ $sale->id }}" title="Detalhes da Venda" theme="primary"
-                                icon="fas fa-bolt" size='lg' disable-animations>
+                                icon="fas fa-bolt" size='lg' >
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-md-12">
