@@ -34,7 +34,7 @@ O destaque do sistema é a funcionalidade de **pagamento personalizado**, permit
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/flexsales.git
+git clone https://github.com/theohenrique222/FlexSales.git
 cd flexsales
 ```
 
