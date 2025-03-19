@@ -82,9 +82,12 @@ php artisan db:seed
 
 ## 🛠️ Melhorias Futuras
 
+Impressão de venda em PDF.
+
 Implementação de relatórios detalhados.
+
 Dashboard com gráficos dinâmicos.
-Integração com gateways de pagamento (Ex: PagSeguro, Stripe).
+
 Otimização do CRUD com Livewire ou Inertia.js.
 
 ## 🤝 Licença
