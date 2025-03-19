@@ -12,9 +12,15 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $products = Product::create([
-            'name' => 'Produto 1',
-            'price' => '100',
+        $products = Product::insert([
+            [
+                'name' => 'Produto 1',
+                'price' => '100',
+            ],
+            [
+                'name' => 'Produto 2',
+                'price' => '200',
+            ],
         ]);
     }
 }

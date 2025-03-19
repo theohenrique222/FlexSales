@@ -12,9 +12,15 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        $clients = Client::create([
-            'name' => 'Cliente 1',
-            'cpf' => '123456789',
+        $clients = Client::insert([
+            [
+                'name' => 'Cliente 1',
+                'cpf' => '12345678900',
+            ],
+            [
+                'name' => 'Cliente 2',
+                'cpf' => '12345678900',
+            ],
         ]);
     }
 }

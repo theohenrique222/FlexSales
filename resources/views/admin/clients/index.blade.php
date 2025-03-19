@@ -9,7 +9,7 @@
 @section('content')
 
     <x-adminlte-datatable id="table" :heads="['ID', 'Nome', 'CPF', 'Ações']" theme="light" striped hoverable>
-        @foreach ($clients as $client)
+        @forelse ($clients as $client)
             <tr>
                 <td>{{ $client->id }}</td>
                 <td>{{ $client->name }}</td>
@@ -26,7 +26,9 @@
                     </form>
                 </td>
             </tr>
-        @endforeach
+        @empty
+        <td colspan="6" class="text-center">Nenhum cliente cadastrado.</td>
+        @endforelse
     </x-adminlte-datatable>
 
     <a class="btn btn-primary" href="{{ route('clients.create') }}">Cadastrar Cliente</a>
