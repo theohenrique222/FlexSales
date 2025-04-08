@@ -140,6 +140,15 @@
                 @endif
             </tr>
             <tr>
+                <td>
+                    @if (($sale->payments->installments ?? 0) > 0)
+                    <span class="highlight">Valor das parcelas:</span>
+                        {{ $sale->payments->formatted_installment_values ?? '0' }}
+                    @endif
+                </td>
+                <td></td>
+            </tr>
+            <tr>
                 <td colspan="2" class="total">
                     Total: R$ {{ number_format($sale->payments->amount ?? 0, 2, ',', '.') }}
                 </td>
