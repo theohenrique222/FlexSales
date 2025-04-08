@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Seller;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -24,10 +25,6 @@ class SaleController extends Controller
         ]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $sales          = Sale::all();
@@ -41,9 +38,6 @@ class SaleController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -60,13 +54,11 @@ class SaleController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($saleId)
     {
         $sale = Sale::with([
-            'products'  => function ($query) {
+            'products'  => function ($query) 
+            {
                 $query->withPivot('quantity');
             }
         ])->findOrFail($saleId);
@@ -77,7 +69,8 @@ class SaleController extends Controller
 
         $total          = 0;
 
-        foreach ($sale->products as $product) {
+        foreach ($sale->products as $product) 
+        {
             $subtotal   = $product->price * $product->pivot->quantity;
             $total     += $subtotal;
         }
@@ -91,10 +84,6 @@ class SaleController extends Controller
         ]);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Sale $sale)
     {
         $clients        = Client::all();
@@ -107,9 +96,6 @@ class SaleController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Sale $sale)
     {
         $request->validate([
@@ -134,9 +120,16 @@ class SaleController extends Controller
         return redirect()->route('sales.show', ['sale' => $sale->id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+     public function exportPdf(Sale $sale)
+     {
+         $sale->load(['products', 'client', 'seller.user', 'payments']);
+     
+         $pdf  = Pdf::loadView('admin.sales.savePDF', compact('sale'));
+     
+         return $pdf->stream("venda_{$sale->id}.pdf");
+     }
+     
+
     public function destroy(Sale $sale)
     {
         $sale->payments()->delete();

@@ -31,6 +31,11 @@
                         </td>
                         <td>
 
+                            <a href="{{ route('sales.pdf', $sale->id) }}"
+                                class="btn btn-xs btn-default text-danger mx-1 shadow" title="Salvar em PDF" target="_Blanck">
+                                <i class="fa fa-lg fa-fw fa-file-pdf"></i>
+                            </a>
+
                             <button type="button" data-toggle="modal" data-target="#modalSale-{{ $sale->id }}"
                                 class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
@@ -117,7 +122,7 @@
                                     </div>
                                 </div>
                             </x-adminlte-modal>
-
+                            
                             <form action="{{ route('sales.destroy', $sale->id) }}" method="POST"
                                 onsubmit="return confirm('Tem certeza que deseja excluir esta venda?');" class="d-inline">
                                 @csrf

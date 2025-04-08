@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class);
-    
+    Route::get('/sales/{sale}/pdf', [SaleController::class, 'exportPdf'])->name('sales.pdf');
     Route::resource('products', ProductController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('sellers', SellerController::class);
     Route::resource('sales', SaleController::class);
+    Route::resource('sales', App\Http\Controllers\SaleController::class);
     Route::resource('payments', PaymentController::class);
 });
