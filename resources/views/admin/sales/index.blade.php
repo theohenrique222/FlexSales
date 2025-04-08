@@ -31,11 +31,6 @@
                         </td>
                         <td>
 
-                            <a href="{{ route('sales.pdf', $sale->id) }}"
-                                class="btn btn-xs btn-default text-danger mx-1 shadow" title="Salvar em PDF" target="_Blanck">
-                                <i class="fa fa-lg fa-fw fa-file-pdf"></i>
-                            </a>
-
                             <button type="button" data-toggle="modal" data-target="#modalSale-{{ $sale->id }}"
                                 class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
@@ -133,6 +128,12 @@
                                     <i class="fa fa-lg fa-fw fa-trash"></i>
                                 </button>
                             </form>
+
+
+                            <a href="{{ route('sales.pdf', $sale->id) }}"
+                                class="btn btn-xs btn-default text-success mx-1 shadow" title="Salvar em PDF" target="_Blanck">
+                                <i class="fa fa-lg fa-fw fa-file-pdf"></i>
+                            </a>
                         </td>
                     </tr>
                 @empty
