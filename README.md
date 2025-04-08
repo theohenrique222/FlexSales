@@ -26,6 +26,7 @@ O destaque do sistema é a funcionalidade de **pagamento personalizado**, permit
 - Sistema de pagamento flexível, com personalização dos valores de cada parcela.
 - Relacionamentos estruturados para integridade dos dados.
 - Painel administrativo responsivo e intuitivo utilizando AdminLTE.
+- Impressão da venda detalhada em PDF.
 
 ---
 
@@ -81,8 +82,6 @@ php artisan db:seed
 ```
 
 ## 🛠️ Melhorias Futuras
-
-Impressão de venda em PDF.
 
 Implementação de relatórios detalhados.
 
