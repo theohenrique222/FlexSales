@@ -9,7 +9,7 @@ use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', DashboardController::class);
+    Route::get('/', DashboardController::class)->middleware('auth');
     Route::get('/sales/{sale}/pdf', [SaleController::class, 'exportPdf'])->name('sales.pdf');
     Route::resource('products', ProductController::class);
     Route::resource('clients', ClientController::class);
