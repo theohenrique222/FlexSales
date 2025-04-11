@@ -35,9 +35,9 @@
                                 class="btn btn-xs btn-default text-primary mx-1 shadow" title="Visualizar">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </button>
-
+                            
                             <x-adminlte-modal id="modalSale-{{ $sale->id }}" title="Detalhes da Venda" theme="primary"
-                                icon="fas fa-bolt" size='lg' >
+                                icon="fas fa-bolt" size='lg'>
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-md-12">
@@ -116,6 +116,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <x-slot name="footerSlot">
+                                    <a href="{{ route('sales.pdf', $sale->id) }}"
+                                        class="btn bg-success btn-xs btn-default py-2 px-1 shadow" title="Salvar em PDF" target="_blanck">
+                                        Salvar em PDF<i class="fa fa-lg fa-fw fa-file-pdf"></i>
+                                    </a>
+                                    <x-adminlte-button theme="danger" label="Fechar" data-dismiss="modal"/>
+                                </x-slot>
                             </x-adminlte-modal>
                             
                             <form action="{{ route('sales.destroy', $sale->id) }}" method="POST"
