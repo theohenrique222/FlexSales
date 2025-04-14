@@ -29,12 +29,12 @@
         </div>
 
         <div class="row">
-            <select name="role" required>
+            <x-adminlte-select name="selBasic">
                 <option value="">Selecione um perfil</option>
                 @foreach ($roles as $role)
                     <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
                 @endforeach
-            </select>
+            </x-adminlte-select>
         </div>
 
         <x-adminlte-button class="btn-flat" type="submit" label="Cadastrar" theme="success" icon="fas fa-lg fa-save" />
