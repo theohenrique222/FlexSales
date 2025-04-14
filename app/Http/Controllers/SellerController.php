@@ -29,9 +29,9 @@ class SellerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'password' => 'required',
+            'name'      => 'required|max:255',
+            'email'     => 'required|max:255',
+            'password'  => 'required',
         ]);
 
         $user = User::create([

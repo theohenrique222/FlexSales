@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -21,9 +21,6 @@ class UserSeeder extends Seeder
             'email'     => 'admin@teste.com', 
             'password'  => 'password',
         ]);
-
-       $seller = Seller::create([
-            'user_id'   => $user->id,
-       ]);
+        $user->assignRole('admin');
     }
 }
