@@ -6,15 +6,63 @@
 
 @section('content')
 
-    <x-adminlte-profile-widget name="{{ auth()->user()->name ?? 'Sem identificação' }}" desc="Gestor de vendas" class="elevation-4 bg-primary text-bold"
-        img="https://picsum.photos/id/1/100"  layout-type="classic"
-        header-class="text-right" footer-class="bg-white">
-        <x-adminlte-profile-col-item class="border-right text-dark" icon="fas fa-lg fa-tasks" title="Total de Clientes" url="/clients" text="{{ $allClients }}" size=6 badge="lime" />
-        <x-adminlte-profile-col-item class="text-dark" icon="fas fa-lg fa-tasks" title="Total de Vendas" url="/sales" text="{{ $mySalesCount }}" size=6 badge="primary" />
-        <x-adminlte-profile-row-item title="Redes Sociais" class="text-center text-dark border-bottom" />
-        <x-adminlte-profile-row-item icon="fab fa-fw fa-2x fa-instagram text-dark" title="Instagram" url="#" size=4 />
-        <x-adminlte-profile-row-item icon="fab fa-fw fa-2x fa-facebook text-dark" title="Facebook" url="#" size=4 />
-        <x-adminlte-profile-row-item icon="fab fa-fw fa-2x fa-whatsapp text-dark" title="Whatsapp" url="#" size=4 />
-    </x-adminlte-profile-widget>
+<div class="card card-widget widget-user shadow">
+    <!-- Header -->
+    <div class="widget-user-header text-white" style="background: linear-gradient(45deg, #007bff, #00c6ff);">
+        <h3 class="widget-user-username">{{ auth()->user()->name ?? 'Sem identificação' }}</h3>
+        <h5 class="widget-user-desc">Gestor de Vendas</h5>
+    </div>
+
+    <!-- User Image -->
+    <div class="widget-user-image">
+        <img class="img-circle elevation-3" src="https://picsum.photos/id/1/100" alt="User Avatar">
+    </div>
+
+    <!-- Body -->
+    <div class="card-body pt-5">
+        <div class="row text-center">
+            <div class="col-sm-6 border-right">
+                <a href="/clients" class="text-dark">
+                    <h5 class="font-weight-bold mb-0">{{ $allClients }}</h5>
+                    <span>Total de Clientes</span>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="/sales" class="text-dark">
+                    <h5 class="font-weight-bold mb-0">{{ $mySalesCount }}</h5>
+                    <span>Total de Vendas</span>
+                </a>
+            </div>
+        </div>
+
+        <hr class="my-3">
+
+        <div class="text-center mb-2">
+            <h6 class="text-muted text-uppercase">Redes Sociais</h6>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-4">
+                <a href="#" class="text-dark">
+                    <i class="fab fa-instagram fa-2x mb-1"></i>
+                    <div>Instagram</div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="#" class="text-dark">
+                    <i class="fab fa-facebook fa-2x mb-1"></i>
+                    <div>Facebook</div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="#" class="text-dark">
+                    <i class="fab fa-whatsapp fa-2x mb-1"></i>
+                    <div>Whatsapp</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @stop
