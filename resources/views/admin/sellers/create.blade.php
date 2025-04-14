@@ -28,6 +28,15 @@
             </x-adminlte-input>
         </div>
 
+        <div class="row">
+            <select name="role" required>
+                <option value="">Selecione um perfil</option>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <x-adminlte-button class="btn-flat" type="submit" label="Cadastrar" theme="success" icon="fas fa-lg fa-save" />
     </form>
 

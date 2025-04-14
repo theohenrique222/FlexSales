@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class SellerController extends Controller
 {
@@ -20,7 +21,8 @@ class SellerController extends Controller
      */
     public function create()
     {
-        return view('admin.sellers.create');
+        $roles = Role::all();
+        return view('admin.sellers.create', ['roles' => $roles]);
     }
 
     /**
