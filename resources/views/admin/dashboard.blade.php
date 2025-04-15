@@ -7,18 +7,18 @@
 @section('content')
 
     <div class="card card-widget widget-user shadow">
-        <!-- Header -->
-        <div class="widget-user-header text-white" style="background: linear-gradient(45deg, #007bff, #00c6ff);">
+
+        <div class="widget-user-header text-white" style="background: linear-gradient(45deg, #4b5259, #d2d8d9);">
             <h3 class="widget-user-username">{{ auth()->user()->name ?? 'Sem identificação' }}</h3>
-            <h5 class="widget-user-desc">Gestor de Vendas</h5>
+            <h5 class="widget-user-desc"> 
+                {{ ucfirst(auth()->user()->roles->first()->name ?? 'Sem cargo') }}
+            </h5>
         </div>
 
-        <!-- User Image -->
         <div class="widget-user-image">
             <img class="img-circle elevation-3" src="https://picsum.photos/id/1/100" alt="User Avatar">
         </div>
 
-        <!-- Body -->
         <div class="card-body pt-5">
             <div class="row text-center">
                 <div class="col-sm-6 border-right">
