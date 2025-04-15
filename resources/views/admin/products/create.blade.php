@@ -32,7 +32,7 @@
                             type="number" min="0" fgroup-class="col-md-4 mb-4" />
             
                         <x-adminlte-select name="status" label="Estado do Produto" fgroup-class="col-md-4 mb-4" icon="fas fa-toggle-on">
-                            <x-adminlte-options :options="['novo' => 'Novo', 'usado' => 'Usado']" />
+                            <x-adminlte-options :options="['new' => 'Novo', 'used' => 'Usado']" />
                         </x-adminlte-select>
                     </div>
             

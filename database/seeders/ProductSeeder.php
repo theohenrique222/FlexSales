@@ -15,12 +15,11 @@ class ProductSeeder extends Seeder
         $products = Product::insert([
             [
                 'name' => 'Produto 1',
-                'price' => '100',
+                'brand' => 'Marca Ex',
+                'quantity' => '10',
+                'price' => '100.00',
             ],
-            [
-                'name' => 'Produto 2',
-                'price' => '200',
-            ],
+            
         ]);
     }
 }

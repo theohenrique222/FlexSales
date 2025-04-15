@@ -11,7 +11,10 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'brand',
+        'quantity',
         'price',
+        'status'
     ];
 
     // public function sales()
