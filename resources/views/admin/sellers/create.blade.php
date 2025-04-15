@@ -10,7 +10,6 @@
 
     <div class="card shadow rounded">
         <div class="card-body">
-            {{-- @if (auth()->user()->hasRole('admin')) --}}
             @role('admin')
                 <form action="{{ route('sellers.store') }}" method="post">
                     @csrf
