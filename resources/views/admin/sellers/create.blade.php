@@ -42,6 +42,7 @@
                         @endforeach
                     </x-adminlte-select>
                 </div>
+
                 <div class="row">
                     <div class="col text-end">
                         <x-adminlte-button class="btn-flat" type="submit" label="Cadastrar" theme="success"
