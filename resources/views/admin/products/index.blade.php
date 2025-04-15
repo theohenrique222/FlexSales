@@ -10,12 +10,14 @@
 
 <x-adminlte-card title="Lista de Produtos" theme="primary" icon="fas fa-boxes" class="elevation-3">
 
-    <x-adminlte-datatable id="table" :heads="['Nome', 'Quantidade', 'Valor (R$)', 'Ações']" theme="light" striped hoverable head-theme="bg-white">
+    <x-adminlte-datatable id="table" :heads="['Nome', 'Marca', 'Quantidade', 'Valor (R$)', 'Estado', 'Ações']" theme="light" striped hoverable head-theme="bg-white">
         @forelse ($products as $product)
             <tr>
                 <td class="align-middle">{{ $product->name }}</td>
+                <td class="align-middle">{{ $product->brand }}</td>
                 <td class="align-middle">{{ $product->quantity }}</td>
                 <td class="align-middle">{{ number_format($product->price, 2, ',', '.') }}</td>
+                <td class="align-middle">{{ $product->status }}</td>
                 <td class="align-middle">
                     <div class="d-flex gap-1 mx-2">
                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-warning">
