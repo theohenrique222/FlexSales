@@ -10,11 +10,11 @@
 
     <div class="card shadow rounded">
         <div class="card-body">
-            @if (auth()->user()->hasRole('admin'))
+            {{-- @if (auth()->user()->hasRole('admin')) --}}
+            @role('admin')
                 <form action="{{ route('sellers.store') }}" method="post">
                     @csrf
                     @method('post')
-
                     <div class="row mb-3">
                         <x-adminlte-input name="name" label="Nome" placeholder="Nome do Vendedor" fgroup-class="col-md-6"
                             disable-feedback />
@@ -42,10 +42,10 @@
                     </div>
                 </form>
             @else
-                <div class="alert alert-danger">
-                    Você não tem permissão para criar vendedores.
-                </div>
-            @endif
+                <x-adminlte-alert theme="danger" title="Erro">
+                    Você não tem permissão!
+                </x-adminlte-alert>
+            @endrole
         </div>
     </div>
 @stop
