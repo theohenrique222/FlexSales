@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
+
 class SellerController extends Controller
 {
     public function index()
@@ -22,7 +23,9 @@ class SellerController extends Controller
      */
     public function create()
     {
+        
         $roles = Role::all();
+        
         return view('admin.sellers.create', ['roles' => $roles]);
     }
 
