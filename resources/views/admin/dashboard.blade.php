@@ -8,10 +8,10 @@
 
     <div class="card card-widget widget-user shadow">
 
-        <div class="widget-user-header text-white" style="background: linear-gradient(45deg, #007bff, #00c6ff);">
+        <div class="widget-user-header text-white" style="background: linear-gradient(45deg, #4b5259, #d2d8d9);">
             <h3 class="widget-user-username">{{ auth()->user()->name ?? 'Sem identificação' }}</h3>
             <h5 class="widget-user-desc"> 
-                {{ ucfirst(auth()->user()->roles->first()->name ?? 'Sem perfil') }}
+                {{ ucfirst(auth()->user()->roles->first()->name ?? 'Sem cargo') }}
             </h5>
         </div>
 
