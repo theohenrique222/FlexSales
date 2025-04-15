@@ -28,25 +28,29 @@ class SellerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $request->validate([
-            'name'      => 'required|max:255',
-            'email'     => 'required|max:255',
-            'password'  => 'required',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6',
+            'role'     => 'required|exists:roles,name', 
         ]);
 
         $user = User::create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  => $request->password,
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
         ]);
+
+        $user->assignRole($request->role);
 
         Seller::create([
-            'user_id'   => $user->id,
+            'user_id' => $user->id,
         ]);
 
-        return redirect()->route('sellers.index');
+        return redirect()->route('sellers.index')->with('success', 'Vendedor cadastrado com sucesso!');
     }
 
     /**

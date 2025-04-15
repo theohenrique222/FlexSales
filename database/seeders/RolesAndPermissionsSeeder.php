@@ -19,9 +19,9 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'criar clientes']);
         Permission::firstOrCreate(['name' => 'editar vendas']);
 
-        $admin = Role::firstOrCreate(['name' => 'admin']);
-        $gestor = Role::firstOrCreate(['name' => 'gestor']);
-        $vendedor = Role::firstOrCreate(['name' => 'vendedor']);
+        $admin      = Role::firstOrCreate(['name' => 'admin']);
+        $gestor     = Role::firstOrCreate(['name' => 'gestor']);
+        $vendedor   = Role::firstOrCreate(['name' => 'vendedor']);
 
         $admin->givePermissionTo(Permission::all());
         $gestor->givePermissionTo(['ver vendas', 'criar clientes']);
