@@ -22,7 +22,11 @@
         }
 
         h1 {
-            font-size: 2rem
+            font-size: 3rem;
+            font-weight: bold
+        }
+        span {
+            color: #1c63ae;
         }
 
         .section {
@@ -86,8 +90,8 @@
 
 <body>
 
-    <h1>Venda Nº {{ $sale->id }}</h1>
-
+    <h1>FLEX<span>SALES</span></h1>
+    <h3>Venda Nº {{ $sale->id }}</h3>
     <div class="section">
         <div class="section-title">Informações Gerais</div>
         <table class="info-table">
