@@ -85,8 +85,6 @@ php artisan db:seed
 
 Implementação de relatórios detalhados.
 
-Dashboard com gráficos dinâmicos.
-
 Otimização do CRUD com Livewire ou Inertia.js.
 
 ## 🤝 Licença
