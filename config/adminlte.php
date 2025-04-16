@@ -302,7 +302,7 @@ return [
         [
             'text' => 'Produtos',
             'route' => 'products.index',
-            'icon' => 'fas fa-fw fa-box',
+            'icon' => 'fas fa-boxes',
         ],
         [
             'text' => 'Clientes',
@@ -310,7 +310,7 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Vendedor',
+            'text' => 'Vendedores',
             'route' => 'sellers.index',
             'icon' => 'fas fa-fw fa-user',
         ],
