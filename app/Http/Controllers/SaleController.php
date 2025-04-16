@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Seller;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -57,8 +58,7 @@ class SaleController extends Controller
     public function show($saleId)
     {
         $sale = Sale::with([
-            'products'  => function ($query) 
-            {
+            'products'  => function ($query) {
                 $query->withPivot('quantity');
             }
         ])->findOrFail($saleId);
@@ -69,8 +69,7 @@ class SaleController extends Controller
 
         $total          = 0;
 
-        foreach ($sale->products as $product) 
-        {
+        foreach ($sale->products as $product) {
             $subtotal   = $product->price * $product->pivot->quantity;
             $total     += $subtotal;
         }
@@ -88,11 +87,15 @@ class SaleController extends Controller
     {
         $clients        = Client::all();
         $products       = Product::all();
+        $sellers        = Seller::all();
+        $users          = User::all();
 
         return view('admin.sales.edit', [
             'sale'      => $sale,
             'clients'   => $clients,
             'products'  => $products,
+            'sellers'   => $sellers,
+            'users'     => $users
         ]);
     }
 
@@ -120,15 +123,15 @@ class SaleController extends Controller
         return redirect()->route('sales.show', ['sale' => $sale->id]);
     }
 
-     public function exportPdf(Sale $sale)
-     {
-         $sale->load(['products', 'client', 'seller.user', 'payments']);
-     
-         $pdf  = Pdf::loadView('admin.sales.savePDF', compact('sale'));
-     
-         return $pdf->stream("venda_{$sale->id}.pdf");
-     }
-     
+    public function exportPdf(Sale $sale)
+    {
+        $sale->load(['products', 'client', 'seller.user', 'payments']);
+
+        $pdf  = Pdf::loadView('admin.sales.savePDF', compact('sale'));
+
+        return $pdf->stream("venda_{$sale->id}.pdf");
+    }
+
 
     public function destroy(Sale $sale)
     {
