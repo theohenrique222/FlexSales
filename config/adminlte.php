@@ -300,29 +300,29 @@ return [
 
     'menu' => [
         [
-            'text' => 'Produtos',
+            'text'  => 'Produtos',
             'route' => 'products.index',
-            'icon' => 'fas fa-boxes',
+            'icon'  => 'fas fa-boxes',
         ],
         [
-            'text' => 'Clientes',
+            'text'  => 'Clientes',
             'route' => 'clients.index',
-            'icon' => 'fas fa-fw fa-users',
+            'icon'  => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Vendedores',
+            'text'  => 'Vendedores',
             'route' => 'sellers.index',
-            'icon' => 'fas fa-fw fa-user',
+            'icon'  => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Vendas',
+            'text'  => 'Vendas',
             'route' => 'sales.index',
-            'icon' => 'fas fa-fw fa-dumpster',
+            'icon'  => 'fas fa-fw fa-dumpster',
         ],
         [
-            'text' => 'Vender',
+            'text'  => 'Iniciar Venda',
             'route' => 'sales.create',
-            'icon' => 'fas fa-fw fa-dumpster-fire',
+            'icon'  => 'fas fa-cart-plus',
         ],
     ],
 

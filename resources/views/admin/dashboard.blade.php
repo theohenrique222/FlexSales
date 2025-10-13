@@ -10,7 +10,7 @@
 
         <div class="widget-user-header text-white" style="background: linear-gradient(45deg, #4b5259, #d2d8d9);">
             <h3 class="widget-user-username">{{ auth()->user()->name ?? 'Sem identificação' }}</h3>
-            <h5 class="widget-user-desc"> 
+            <h5 class="widget-user-desc">
                 {{ ucfirst(auth()->user()->roles->first()->name ?? 'Sem cargo') }}
             </h5>
         </div>
@@ -33,6 +33,18 @@
                         <span>Total de Vendas</span>
                     </a>
                 </div>
+            </div>
+            <hr class="my-3">
+            <div class="text-center h-20">
+                <div class="text-center mb-2">
+                    <h6 class="text-muted text-uppercase">Iniciar uma nova venda</h6>
+                </div>
+                <x-adminlte-button 
+                    class="btn-flat" 
+                    label="Iniciar Venda" 
+                    theme="primary"
+                    icon="fas fa-cart-plus"
+                    onclick="window.location='{{ route('sales.create') }}'" />
             </div>
             <hr class="my-3">
             <div class="text-center mb-2">

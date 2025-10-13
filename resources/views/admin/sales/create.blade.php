@@ -12,7 +12,7 @@
         <form action="{{ route('sales.store') }}" method="post">
             @csrf
             @method('post')
-
+            
             <div class="row">
                 <x-adminlte-select2 name="client_id" label="Cliente" label-class="text-lightblue" fgroup-class="col-md-6"
                     data-placeholder="Selecione o Cliente">
@@ -24,6 +24,7 @@
                     <x-adminlte-options :options="$clients->pluck('name', 'id')->toArray()" />
                 </x-adminlte-select2>
             </div>
+
             <x-adminlte-button class="btn-flat" type="submit" label="Iniciar Venda" theme="success"
                 icon="fas fa-lg fa-arrow-right" />
         </form>

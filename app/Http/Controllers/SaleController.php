@@ -31,8 +31,10 @@ class SaleController extends Controller
         $sales          = Sale::all();
         $clients        = Client::all();
         $products       = Product::all();
+        $sellers        = Seller::all();
 
         return view('admin.sales.create', [
+            'sellers'   => $sellers,
             'sales'     => $sales,
             'clients'   => $clients,
             'products'  => $products,
@@ -66,36 +68,35 @@ class SaleController extends Controller
         $sellers        = Seller::all();
         $clients        = Client::all();
         $products       = Product::all();
-
         $total          = 0;
 
         foreach ($sale->products as $product) {
-            $subtotal   = $product->price * $product->pivot->quantity;
-            $total     += $subtotal;
+            $subtotal   =   $product->price * $product->pivot->quantity;
+            $total     +=   $subtotal;
         }
 
         return view('admin.sales.show', [
-            'sale'      => $sale,
-            'sellers'   => $sellers,
-            'clients'   => $clients,
-            'products'  => $products,
-            'total'     => $total,
+            'sale'      =>  $sale,
+            'sellers'   =>  $sellers,
+            'clients'   =>  $clients,
+            'products'  =>  $products,
+            'total'     =>  $total,
         ]);
     }
 
     public function edit(Sale $sale)
     {
-        $clients        = Client::all();
-        $products       = Product::all();
-        $sellers        = Seller::all();
-        $users          = User::all();
+        $clients        =   Client::all();
+        $products       =   Product::all();
+        $sellers        =   Seller::all();
+        $users          =   User::all();
 
         return view('admin.sales.edit', [
-            'sale'      => $sale,
-            'clients'   => $clients,
-            'products'  => $products,
-            'sellers'   => $sellers,
-            'users'     => $users
+            'sale'      =>  $sale,
+            'clients'   =>  $clients,
+            'products'  =>  $products,
+            'sellers'   =>  $sellers,
+            'users'     =>  $users
         ]);
     }
 
