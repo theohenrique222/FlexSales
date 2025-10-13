@@ -300,9 +300,14 @@ return [
 
     'menu' => [
         [
+            'text'  => 'Início',
+            'url'   => '/',
+            'icon'  => 'fas fa-home',
+        ],
+        [
             'text'  => 'Produtos',
             'route' => 'products.index',
-            'icon'  => 'fas fa-boxes',
+            'icon'  => 'fas fa-shopping-cart',
         ],
         [
             'text'  => 'Clientes',
