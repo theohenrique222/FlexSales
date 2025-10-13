@@ -17,9 +17,14 @@
 
                     <form action="{{ route('sellers.destroy', $seller->id) }}" method="post">
                         @csrf
-                        <a href="{{ route('sellers.edit', $seller->id) }}" class="btn btn-info btn-sm">Editar</a>
+                        <a href="{{ route('sellers.edit', $seller->id) }}" class="btn btn-sm btn-warning mx-1">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                            Excluir
+                        </button>
                     </form>
                 </td>
             </tr>
